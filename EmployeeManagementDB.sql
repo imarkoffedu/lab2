@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 05, 2023 at 05:32 PM
+-- Generation Time: Oct 05, 2023 at 06:31 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `CourseAttendance` (
-  `attendance_id` int(11) NOT NULL,
-  `employee_id` int(11) NOT NULL,
-  `course_id` int(11) NOT NULL
+  `attendance_id` int(11) NOT NULL COMMENT 'ID',
+  `employee_id` int(11) NOT NULL COMMENT 'ID працівника',
+  `course_id` int(11) NOT NULL COMMENT 'ID курсу'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -60,9 +60,9 @@ INSERT INTO `CourseAttendance` (`attendance_id`, `employee_id`, `course_id`) VAL
 
 CREATE TABLE `Courses` (
   `course_id` int(11) NOT NULL,
-  `course_name` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `date` date NOT NULL COMMENT 'Дата проведення курсу.'
+  `course_name` varchar(50) NOT NULL COMMENT 'Назва курсу',
+  `description` text NOT NULL COMMENT 'Опис курсу',
+  `date` date NOT NULL COMMENT 'Дата проведення курсу'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -82,12 +82,12 @@ INSERT INTO `Courses` (`course_id`, `course_name`, `description`, `date`) VALUES
 --
 
 CREATE TABLE `Employees` (
-  `employee_id` int(11) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `email` varchar(128) NOT NULL,
-  `birthdate` date NOT NULL,
-  `position_id` int(11) NOT NULL
+  `employee_id` int(11) NOT NULL COMMENT 'ID',
+  `first_name` varchar(50) NOT NULL COMMENT 'Ім''я',
+  `last_name` varchar(50) NOT NULL COMMENT 'Прізвище',
+  `email` varchar(128) NOT NULL COMMENT 'Електронна пошта',
+  `birthdate` date NOT NULL COMMENT 'Дата народження',
+  `position_id` int(11) NOT NULL COMMENT 'ID посади'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -110,9 +110,9 @@ INSERT INTO `Employees` (`employee_id`, `first_name`, `last_name`, `email`, `bir
 --
 
 CREATE TABLE `Positions` (
-  `position_id` int(11) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `description` text NOT NULL
+  `position_id` int(11) NOT NULL COMMENT 'ID',
+  `title` varchar(50) NOT NULL COMMENT 'Назва',
+  `description` text NOT NULL COMMENT 'Опис'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -134,10 +134,10 @@ INSERT INTO `Positions` (`position_id`, `title`, `description`) VALUES
 --
 
 CREATE TABLE `Salaries` (
-  `salary_id` int(11) NOT NULL,
-  `employee_id` int(11) NOT NULL,
-  `payment_date` date NOT NULL,
-  `amount` decimal(10,2) NOT NULL
+  `salary_id` int(11) NOT NULL COMMENT 'ID',
+  `employee_id` int(11) NOT NULL COMMENT 'ID працівника',
+  `payment_date` date NOT NULL COMMENT 'Дата виплати',
+  `amount` decimal(10,2) NOT NULL COMMENT 'Сума зарплати'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -163,11 +163,11 @@ INSERT INTO `Salaries` (`salary_id`, `employee_id`, `payment_date`, `amount`) VA
 --
 
 CREATE TABLE `Vacations` (
-  `vacation_id` int(11) NOT NULL,
-  `employee_id` int(11) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `reason` varchar(100) NOT NULL
+  `vacation_id` int(11) NOT NULL COMMENT 'ID',
+  `employee_id` int(11) NOT NULL COMMENT 'ID працівника',
+  `start_date` date NOT NULL COMMENT 'Дата початку відпустки',
+  `end_date` date NOT NULL COMMENT 'Дата кінця відпустки',
+  `reason` varchar(100) NOT NULL COMMENT 'Тип відпустки (+причина)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -190,11 +190,11 @@ INSERT INTO `Vacations` (`vacation_id`, `employee_id`, `start_date`, `end_date`,
 --
 
 CREATE TABLE `WorkHours` (
-  `workhour_id` int(11) NOT NULL,
-  `employee_id` int(11) NOT NULL,
-  `work_date` date NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL
+  `workhour_id` int(11) NOT NULL COMMENT 'ID',
+  `employee_id` int(11) NOT NULL COMMENT 'ID працівника',
+  `work_date` date NOT NULL COMMENT 'Дата виходу на роботу',
+  `start_time` time NOT NULL COMMENT 'Початок зміни',
+  `end_time` time NOT NULL COMMENT 'Кінець зміни'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -276,7 +276,7 @@ ALTER TABLE `WorkHours`
 -- AUTO_INCREMENT for table `CourseAttendance`
 --
 ALTER TABLE `CourseAttendance`
-  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `Courses`
@@ -288,31 +288,31 @@ ALTER TABLE `Courses`
 -- AUTO_INCREMENT for table `Employees`
 --
 ALTER TABLE `Employees`
-  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `Positions`
 --
 ALTER TABLE `Positions`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `Salaries`
 --
 ALTER TABLE `Salaries`
-  MODIFY `salary_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `salary_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `Vacations`
 --
 ALTER TABLE `Vacations`
-  MODIFY `vacation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `vacation_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `WorkHours`
 --
 ALTER TABLE `WorkHours`
-  MODIFY `workhour_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `workhour_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
